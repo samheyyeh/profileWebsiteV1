@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sam's Spotlights</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Sam's Spotlights</h1>
+    <a href="https://www.linkedin.com/in/samheyyeh">LinkedIn</a> | <a href="https://github.com/samheyyeh">Github</a>
+  </header>
+  
+  <main>
+    <section class="gallery">
+      <div class="gallery-item" data-details="aiPromptBattle">
+        <img src="images/prompt2.png" alt="AI Prompt Battle 1">
+        <div class="overlay">
+          <p>AI Prompt Battle</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-details="aiPromptBattle">
+        <img src="images/promptBattleX.png" alt="AI Prompt Battle 2">
+        <div class="overlay">
+          <p>AI Prompt Battle</p>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-details="aiPromptBattle">
+        <video src="images/promptBattle.mp4" type="video/mp4" controls>
+          Your browser does not support videos.
+        </video>
+        <div class="overlay">
+          <p>AI Prompt Battle</p>
+        </div>
+      </div>     
+
+      <div class="gallery-item" data-details="tedTalk">
+        <img src="images/ted.png" alt="TEDxTalk 1">
+        <div class="overlay">
+          <p>TEDxArlington Heights Talk</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-details="captainInterview">
+        <img src="images/captainCover.png" alt="Captain Appearance" class="audio-cover">
+        <div class="overlay">
+          <p>Coffee With Captain Appearance</p>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-details="brc">
+        <img src="images/BRC.png" alt="Bored Racket Club">
+        <div class="overlay">
+          <p>Bored Racket Club</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-details="hermanShout">
+        <img src="images/hermanShout.png" alt="Herman Shout">
+        <div class="overlay">
+          <p>imnotArt Internship</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-details="visionPro">
+        <img src="images/imnotart.png" alt="Vision Pro">
+        <div class="overlay">
+          <p>imnotArt Internship</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-details="ethChi">
+        <img src="images/EthChi.png" alt="ETH Chi">
+        <div class="overlay">
+          <p>ETH Chicago 2023</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-details="nakamoto">
+        <img src="images/nakamoto.png" alt="nakamoto">
+        <div class="overlay">
+          <p>Nakamoto Internship</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-details="tennis">
+        <img src="images/tennis.png" alt="tennis">
+        <div class="overlay">
+          <p>Tennis Player</p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div id="modal-details"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #EDE8F5;
+  color: #3D52A0;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #3D52A0;
+  color: #EDE8F5;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+  header {
+    font-size: 2rem; 
+    padding: 15px; 
+  }
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); 
+  gap: 20px;
+  padding: 40px;
+  background-color: #EDE8F5;
+}
+
+@media (min-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 15px;
+  background-color: #ADBBDA;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;               
+}
+
+.gallery-item img,
+.gallery-item video {
+  width: 100%;               
+  height: auto;              
+  display: block;            
+  object-fit: cover;         
+  border-radius: 15px;       
+  transition: opacity 0.4s ease; 
+}
+
+.gallery-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #EDE8F5;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  transition: background 0.4s ease;
+}
+
+.gallery-item:hover .overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  max-width: 600px; 
+  border-radius: 15px;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #3D52A0;
+  color: #EDE8F5;
+  font-size: 1rem;
+}
