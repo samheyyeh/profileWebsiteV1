@@ -1,3 +1,4 @@
+/* Reset and Basic Styling */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,6 +13,7 @@ body {
   padding: 0;
 }
 
+/* Header Styling */
 header {
   text-align: center;
   padding: 20px;
@@ -33,6 +35,7 @@ h1 {
   margin-bottom: 10px;
 }
 
+/* Links */
 .link-container {
   display: flex;
   justify-content: center;
@@ -51,20 +54,17 @@ h1 {
   text-decoration: underline;
 }
 
+/* Gallery Styling */
+/* Default to a single column for all screens */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(1, 1fr); 
+  grid-template-columns: 1fr;
   gap: 20px;
   padding: 40px;
   background-color: #EDE8F5;
 }
 
-@media (min-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
+/* Gallery Items */
 .gallery-item {
   position: relative;
   overflow: hidden;
@@ -91,6 +91,7 @@ h1 {
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
 }
 
+/* Overlay Styling */
 .overlay {
   position: absolute;
   bottom: 0;
@@ -111,6 +112,7 @@ h1 {
   font-weight: 500;
 }
 
+/* Modal Styling */
 .modal {
   display: none; 
   position: fixed; 
@@ -147,6 +149,7 @@ h1 {
   cursor: pointer;
 }
 
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;

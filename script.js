@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const gallery = document.querySelector('.gallery');
   const galleryItems = document.querySelectorAll('.gallery-item');
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('modal-details');
   const closeBtn = document.querySelector('.close-btn');
 
-  // Define the content for each experience here
+  // Define the content for each experience
   const experiences = {
     aiPromptBattle: `
       <h2>AI Prompt Battle</h2>
@@ -76,4 +77,21 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'none';
     }
   });
+
+  // Function to adjust gallery layout based on screen width
+  function updateGalleryLayout() {
+    const screenWidth = window.innerWidth;
+    
+    if (screenWidth >= 768) {
+      gallery.style.gridTemplateColumns = 'repeat(4, 1fr)'; // 4 columns on larger screens
+    } else {
+      gallery.style.gridTemplateColumns = '1fr'; // 1 column on smaller screens
+    }
+  }
+
+  // Run on initial load
+  updateGalleryLayout();
+
+  // Listen for window resize and update layout dynamically
+  window.addEventListener('resize', updateGalleryLayout);
 });
