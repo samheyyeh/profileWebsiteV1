@@ -46,6 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
     tennis: `
       <h2>Tennis</h2>
       <p>I've played tennis as long as I can remember and made the varsity team on my freshman and ended up winning conference champion at 3rd singles that year. Since then, I've played in the state lineup on a runner-up team. I also coach young tennis players in the summers. I'll be playing my final season this spring.</p>
+    `,
+    marvila: `
+      <h2>Bored Racket Club @ MBA Bodega</h2>
+      <p>At ApeFest Lisbon, I had the opportunitiy to sell my Bored Racket Club products at the Made By Apes Bodega. I was able to meet my customers in-person from over 10 countries and sold out of my inventory.</p>
+    `,
+    lisbonEvent: `
+      <h2>Bored Racket Club Lisbon Event</h2>
+      <p>I organized and hosted the first international Bored Racket Club event for ApeFest Lisbon. People from 6 countries and of all skill levels came to play pickleball with the Bored Racket Club.</p> 
     `
   };
 
