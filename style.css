@@ -19,20 +19,37 @@ header {
   padding: 20px;
   background-color: #3D52A0;
   color: #EDE8F5;
-  font-size: 3rem;
   font-weight: 700;
   letter-spacing: 2px;
 }
 
-@media (max-width: 768px) {
-  header {
-    font-size: 2rem; 
-    padding: 15px; 
+/* Default font size for larger screens */
+h1 {
+  font-size: 3.5rem; /* Increased font size for the title */
+  margin-bottom: 10px;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 3rem; /* Slightly smaller font size */
   }
 }
 
-h1 {
-  margin-bottom: 10px;
+@media (max-width: 768px) {
+  header {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2.5rem; /* Further reduce for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem; /* Even smaller for very small screens */
+  }
 }
 
 /* Links */
@@ -48,6 +65,13 @@ h1 {
   color: #EDE8F5;
   text-decoration: none;
   margin: 0 15px; 
+}
+
+/* Link adjustments for smaller screens */
+@media (max-width: 768px) {
+  .link-container a {
+    font-size: 1.2rem; /* Smaller links for smaller screens */
+  }
 }
 
 .link-container a:hover {
