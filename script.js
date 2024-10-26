@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `,
     brc: `
       <h2>Bored Racket Club</h2>
-      <p>I am the founder and CEO of Bored Racket Club, a global community of Bored Apes and pickleball players. I applied for a Made for Apes license and  designed, created, and advertised branded pickleball paddles. I sold out of the paddles at the premier industry conference, and I hosted global events in Chicago and Lisbon for community members.</p>
+      <p>I am the founder and CEO of Bored Racket Club, a global community of Bored Apes and pickleball players. I applied for a Made for Apes license and designed, created, and advertised branded pickleball paddles. I sold out of the paddles at the premier industry conference, and I hosted global events in Chicago and Lisbon for community members. I even was accepted into a selective startup incubator and received $30,000 in funding.</p>
       <a href="https://www.boredrackets.com/">Bored Racket Club Website</a>
     `,
     hermanShout: `
