@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const experiences = {
     aiPromptBattle: `
       <h2>AI Prompt Battle</h2>
-      <p>The AI Prompt Battle was created to bring fun and competition to AI in all fields. It won the Cyberjam Hackathon and was used at the Chicago Fashion Coalition event and the Vitalia Biohacking Conference.</p>
+      <p>I created the AI Prompt Battle to bring fun and competition to AI in all fields. This project won the Cyberjam Hackathon. The AI Prompt Battle was recently used at the Chicago Fashion Coalition event and the Vitalia Biohacking Conference.</p>
     `,
     tedTalk: `
       <h2>TEDxArlington Heights Talk</h2>
-      <p>I was chosen to deliver a TEDxArlington Heights Talk on the accessibilty and approachability of AI created with my AI Prompt Battle through fun and competition. I worked for 6 months to memorize and write my script for the day of the conference.</p>
+      <p>I was selected to deliver a TEDxArlington Heights Talk on the accessibility and fun of AI. I worked for six months to pitch my idea, develop my script and prepare to deliver the TEDxArlington Heights Talk in October.</p>
     `,
     captainInterview: `
       <h2>Coffee With Captain Appearance</h2>
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `,
     brc: `
       <h2>Bored Racket Club</h2>
-      <p>I created a global community of Bored Apes and pickleball players through designing, creating, and advertising BAYC #3794-branded pickleball paddles. We've held events in Chicago and Lisbon for our customers.</p>
+      <p>I am the founder and CEO of Bored Racket Club, a global community of Bored Apes and pickleball players. I applied for a Made for Apes license and  designed, created, and advertised branded pickleball paddles. I sold out of the paddles at the premier industry conference, and I hosted global events in Chicago and Lisbon for community members.</p>
       <a href="https://www.boredrackets.com/">Bored Racket Club Website</a>
     `,
     hermanShout: `
@@ -34,19 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
     `,
     visionPro: `
       <h2>imnotArt Internship</h2>
-      <p>At my internship at imnotArt, I was able onboard the Chicago community to AI, the metaverse, and the Apple Vision Pro.</p>
+      <p>At my internship at imnotArt, I was onboarded members of the Chicago community to AI, the metaverse, and the Apple Vision Pro.</p>
     `,
     ethChi: `
       <h2>ETH Chicago 2023 Conference</h2>
-      <p>I volunteered for ETH Chicago 2023 in the Willis Tower and was able to make valuable connections with university students involved in Web3. We even visited Drive Capital to meet venture capitalists.</p>
+      <p>I volunteered for ETH Chicago 2023 where I made valuable connections with university students involved in web3. I also visited Drive Capital to meet venture capitalists.</p>
     `,
     nakamoto: `
       <h2>Nakamoto Internship</h2>
-      <p>In the summer of 2024, I was able to travel to downtown Chicago everyday for my job at Nakamoto. I worked on applying AI to many industries for our clients, and even presented to the CEO of @properties for my project. I also researched the applications of AI and blockchain for doing business.</p>
+      <p>In the summer of 2024, traveled to downtown Chicago everyday for my job at Nakamoto. I worked on applying AI to many industries for our clients, and even presented to the CEO of @properties to showcase AI's integration to the real estate industry. I also researched the integration of AI and blockchain.</p>
     `,
     tennis: `
       <h2>Tennis</h2>
-      <p>I've played tennis as long as I can remember and made the varsity team on my freshman and ended up winning conference champion at 3rd singles that year. Since then, I've played in the state lineup on a runner-up team. I also coach young tennis players in the summers. I'll be playing my final season this spring.</p>
+      <p>I've played tennis for as long as I can remember and made the varsity team starting my freshman year, winning conference champion at 3rd singles that year. Since then, I've played in the state lineup. I also coach middle school tennis players in the summers.</p>
     `,
     marvila: `
       <h2>Bored Racket Club @ MBA Bodega</h2>
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `,
     lisbonEvent: `
       <h2>Bored Racket Club Lisbon Event</h2>
-      <p>I organized and hosted the first international Bored Racket Club event for ApeFest Lisbon. People from 6 countries and of all skill levels came to play pickleball with the Bored Racket Club.</p> 
+      <p>I organized and hosted the first international Bored Racket Club event for ApeFest Lisbon. People from all around the world and of all skill levels came to play pickleball with the Bored Racket Club.</p> 
     `
   };
 
