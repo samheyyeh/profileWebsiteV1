@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `,
     captainInterview: `
       <h2>Coffee With Captain Appearance</h2>
-      <p>I appeared on "Coffee With Captain," a Crypto/NFT podcast hosted by a Bored Ape Yacht Club holder.</p>
+      <p>I appeared on "Coffee With Captain," a Crypto/NFT podcast hosted by a Bored Ape Yacht Club holder, in front of 1,700 listeners.</p>
       <audio controls>
         <source src="images/captainInterview.mp3" type="audio/mp3">
         Your browser does not support the audio.
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `,
     visionPro: `
       <h2>imnotArt Internship</h2>
-      <p>At my internship at imnotArt, I was onboarded members of the Chicago community to AI, the metaverse, and the Apple Vision Pro.</p>
+      <p>At my internship at imnotArt, I onboarded members of the Chicago community to AI, the metaverse, and the Apple Vision Pro.</p>
     `,
     ethChi: `
       <h2>ETH Chicago 2023 Conference</h2>
@@ -55,6 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     lisbonEvent: `
       <h2>Bored Racket Club Lisbon Event</h2>
       <p>I organized and hosted the first international Bored Racket Club event for ApeFest Lisbon. People from all around the world and of all skill levels came to play pickleball with the Bored Racket Club.</p> 
+    `,
+    metaCollective: `
+      <h2>Meta Collective</h2>
+      <p>I founded Meta Collective, Illinois' first Web3-devoted high school club, as a Freshman. I lead weekly meetings, discussing the happenings of cryptocurrencies, NFTs, and more emerging financial markets. We've increased our group's digital wallet value by over 600% trading these assets, hosted and attended events around the state, and promoted the interdisciplinary nature of Web3 around the school!</p>
     `
   };
 
