@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tedTalk: `
       <h2>TEDxArlington Heights Talk</h2>
       <p>I was selected to deliver a TEDxArlington Heights Talk on the accessibility and fun of AI. I worked for six months to pitch my idea, develop my script and prepare to deliver the TEDxArlington Heights Talk in October.</p>
+      <a href="https://youtu.be/JXxln7aeSMM?si=CezlOgipYVG3zGkN">Talk YouTube Video</a>
     `,
     captainInterview: `
       <h2>Coffee With Captain Appearance</h2>
