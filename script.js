@@ -482,6 +482,63 @@ function buildLighting() {
 /* ==========================================================
    Chicago skyline windows
    ========================================================== */
+/* ==========================================================
+   Time-of-day palette — driven by the viewer's local clock
+   ========================================================== */
+function hexToRgb(hex) {
+  const v = parseInt(hex.replace('#', ''), 16);
+  return [(v >> 16) & 255, (v >> 8) & 255, v & 255];
+}
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+function lerpColor(hexA, hexB, t) {
+  const a = hexToRgb(hexA);
+  const b = hexToRgb(hexB);
+  const r = Math.round(lerp(a[0], b[0], t));
+  const g = Math.round(lerp(a[1], b[1], t));
+  const bl = Math.round(lerp(a[2], b[2], t));
+  return `rgb(${r}, ${g}, ${bl})`;
+}
+
+const TIME_KEYFRAMES = [
+  { hour: 0, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.5, 1.15], windowChance: 0.55 },
+  { hour: 5, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.08, 0.95], windowChance: 0.55 },
+  { hour: 6.5, colors: ['#16203f', '#3a3355', '#a85f6a', '#f2985f'], moonAlpha: 0.15, starAlpha: 0.2, sunAlpha: 0.7, sunPos: [0.15, 0.68], windowChance: 0.35 },
+  { hour: 8, colors: ['#3c7bd6', '#6fa8e0', '#a9d4ef', '#dff0fa'], moonAlpha: 0, starAlpha: 0, sunAlpha: 0.9, sunPos: [0.28, 0.45], windowChance: 0.12 },
+  { hour: 12, colors: ['#2e7bd8', '#5fa3e6', '#a7d3f3', '#eaf6ff'], moonAlpha: 0, starAlpha: 0, sunAlpha: 1, sunPos: [0.5, 0.16], windowChance: 0.08 },
+  { hour: 17, colors: ['#3f5f9e', '#7d6f9a', '#c98a76', '#f2b177'], moonAlpha: 0, starAlpha: 0, sunAlpha: 0.85, sunPos: [0.72, 0.42], windowChance: 0.18 },
+  { hour: 19, colors: ['#0c1130', '#241c46', '#5c3860', '#d98a5c'], moonAlpha: 0.4, starAlpha: 0.4, sunAlpha: 0.3, sunPos: [0.85, 0.66], windowChance: 0.45 },
+  { hour: 21, colors: ['#060810', '#0e1128', '#171a34', '#241f38'], moonAlpha: 0.85, starAlpha: 0.85, sunAlpha: 0, sunPos: [0.92, 0.98], windowChance: 0.5 },
+  { hour: 24, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.5, 1.15], windowChance: 0.55 },
+];
+
+function getTimePalette(hourFloat) {
+  const h = ((hourFloat % 24) + 24) % 24;
+  let lo = TIME_KEYFRAMES[0];
+  let hi = TIME_KEYFRAMES[TIME_KEYFRAMES.length - 1];
+  for (let i = 0; i < TIME_KEYFRAMES.length - 1; i++) {
+    if (h >= TIME_KEYFRAMES[i].hour && h <= TIME_KEYFRAMES[i + 1].hour) {
+      lo = TIME_KEYFRAMES[i];
+      hi = TIME_KEYFRAMES[i + 1];
+      break;
+    }
+  }
+  const span = hi.hour - lo.hour || 1;
+  const t = (h - lo.hour) / span;
+
+  return {
+    colors: lo.colors.map((c, i) => lerpColor(c, hi.colors[i], t)),
+    moonAlpha: lerp(lo.moonAlpha, hi.moonAlpha, t),
+    starAlpha: lerp(lo.starAlpha, hi.starAlpha, t),
+    sunAlpha: lerp(lo.sunAlpha, hi.sunAlpha, t),
+    sunPos: [lerp(lo.sunPos[0], hi.sunPos[0], t), lerp(lo.sunPos[1], hi.sunPos[1], t)],
+    windowChance: lerp(lo.windowChance, hi.windowChance, t),
+  };
+}
+
 function addWindowsToRect(ctx, x, y, w, h, chance = 0.5) {
   const winW = 5;
   const winH = 8;
@@ -518,7 +575,7 @@ function drawSkylineLayer(ctx, w, h, baseFrac, color, alpha, minW, maxW, windowC
   ctx.globalAlpha = 1;
 }
 
-function drawWillisTower(ctx, cx, h) {
+function drawWillisTower(ctx, cx, h, chance = 0.5) {
   const baseY = h * 0.86;
   const topY = h * 0.18;
   const width = 90;
@@ -531,7 +588,7 @@ function drawWillisTower(ctx, cx, h) {
   ctx.fillStyle = '#0c0a18';
   ctx.fill();
   ctx.clip();
-  addWindowsToRect(ctx, cx - width / 2, topY, width, baseY - topY);
+  addWindowsToRect(ctx, cx - width / 2, topY, width, baseY - topY, chance);
   ctx.restore();
 
   ctx.fillStyle = '#0c0a18';
@@ -539,7 +596,7 @@ function drawWillisTower(ctx, cx, h) {
   ctx.fillRect(cx + width * 0.22, topY - 45, 4, 45);
 }
 
-function drawHancockTower(ctx, cx, h) {
+function drawHancockTower(ctx, cx, h, chance = 0.5) {
   const baseY = h * 0.86;
   const topY = h * 0.24;
   const baseWidth = 100;
@@ -555,14 +612,15 @@ function drawHancockTower(ctx, cx, h) {
   ctx.fillStyle = '#0c0a18';
   ctx.fill();
   ctx.clip();
-  addWindowsToRect(ctx, cx - baseWidth / 2, topY, baseWidth, baseY - topY);
+  addWindowsToRect(ctx, cx - baseWidth / 2, topY, baseWidth, baseY - topY, chance);
   ctx.restore();
 
   ctx.fillStyle = '#0c0a18';
   ctx.fillRect(cx - 2, topY - 50, 4, 50);
 }
 
-function makeSkylineTexture() {
+function makeSkylineTexture(hourFloat) {
+  const palette = getTimePalette(hourFloat);
   const w = 2048;
   const h = 640;
   const canvas = document.createElement('canvas');
@@ -571,30 +629,58 @@ function makeSkylineTexture() {
   const ctx = canvas.getContext('2d');
 
   const sky = ctx.createLinearGradient(0, 0, 0, h);
-  sky.addColorStop(0, '#0c1130');
-  sky.addColorStop(0.4, '#241c46');
-  sky.addColorStop(0.72, '#5c3860');
-  sky.addColorStop(1, '#d98a5c');
+  sky.addColorStop(0, palette.colors[0]);
+  sky.addColorStop(0.4, palette.colors[1]);
+  sky.addColorStop(0.72, palette.colors[2]);
+  sky.addColorStop(1, palette.colors[3]);
   ctx.fillStyle = sky;
   ctx.fillRect(0, 0, w, h);
 
-  ctx.fillStyle = 'rgba(255,255,255,0.55)';
-  for (let i = 0; i < 140; i++) {
-    const sx = Math.random() * w;
-    const sy = Math.random() * h * 0.45;
-    ctx.fillRect(sx, sy, 1.6, 1.6);
+  if (palette.starAlpha > 0.01) {
+    ctx.globalAlpha = palette.starAlpha;
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    for (let i = 0; i < 140; i++) {
+      const sx = Math.random() * w;
+      const sy = Math.random() * h * 0.45;
+      ctx.fillRect(sx, sy, 1.6, 1.6);
+    }
+    ctx.globalAlpha = 1;
   }
 
-  ctx.fillStyle = '#fdf3d8';
-  ctx.beginPath();
-  ctx.arc(w * 0.83, h * 0.18, 46, 0, Math.PI * 2);
-  ctx.fill();
+  if (palette.moonAlpha > 0.01) {
+    ctx.globalAlpha = palette.moonAlpha;
+    ctx.fillStyle = '#fdf3d8';
+    ctx.beginPath();
+    ctx.arc(w * 0.83, h * 0.18, 46, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
 
-  drawSkylineLayer(ctx, w, h, 0.55, '#332a52', 0.7, 60, 130, 0.3);
-  drawSkylineLayer(ctx, w, h, 0.68, '#1f1a3a', 0.9, 50, 150, 0.45);
-  drawWillisTower(ctx, w * 0.18, h);
-  drawHancockTower(ctx, w * 0.62, h);
-  drawSkylineLayer(ctx, w, h, 0.86, '#0c0a18', 1, 40, 110, 0.55);
+  if (palette.sunAlpha > 0.01) {
+    const sx = w * palette.sunPos[0];
+    const sy = h * palette.sunPos[1];
+    const glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, 130);
+    glow.addColorStop(0, `rgba(255, 235, 180, ${0.55 * palette.sunAlpha})`);
+    glow.addColorStop(1, 'rgba(255, 235, 180, 0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(sx - 130, sy - 130, 260, 260);
+
+    ctx.globalAlpha = palette.sunAlpha;
+    ctx.fillStyle = '#fff6df';
+    ctx.beginPath();
+    ctx.arc(sx, sy, 52, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+
+  const wRatio = palette.windowChance / 0.5;
+  const clampChance = (c) => Math.max(0, Math.min(1, c * wRatio));
+
+  drawSkylineLayer(ctx, w, h, 0.55, '#332a52', 0.7, 60, 130, clampChance(0.3));
+  drawSkylineLayer(ctx, w, h, 0.68, '#1f1a3a', 0.9, 50, 150, clampChance(0.45));
+  drawWillisTower(ctx, w * 0.18, h, clampChance(0.5));
+  drawHancockTower(ctx, w * 0.62, h, clampChance(0.5));
+  drawSkylineLayer(ctx, w, h, 0.86, '#0c0a18', 1, 40, 110, clampChance(0.55));
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
@@ -604,7 +690,9 @@ function makeSkylineTexture() {
 }
 
 function buildWindows() {
-  const skylineTex = makeSkylineTexture();
+  const now = new Date();
+  const hourFloat = now.getHours() + now.getMinutes() / 60;
+  const skylineTex = makeSkylineTexture(hourFloat);
   const margin = 4;
   const usable = ROOM_W - margin * 2;
   const gap = usable / WINDOW_COUNT;
