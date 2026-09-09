@@ -2,120 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sam's Spotlights</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sam Yeh — Interactive Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
 </head>
 <body>
-  <header>
-    <h1>Sam's Spotlights</h1>
-    <div class="link-container">
-      <a href="https://www.linkedin.com/in/samheyyeh">LinkedIn</a> | 
-      <a href="https://github.com/samheyyeh">Github</a> |
-      <!-- <a href="http://108.201.105.210:55555/">Experience Metaverse</a> -->
+
+  <!-- 3D canvas mounts here -->
+  <div id="gallery-container"></div>
+
+  <!-- Loading screen -->
+  <div id="loading-screen">
+    <div class="loader-ring"></div>
+    <p>Building the gallery&hellip;</p>
+  </div>
+
+  <!-- Start / intro overlay -->
+  <div id="start-screen" class="hidden">
+    <div class="start-card">
+      <h1>SAM YEH</h1>
+      <p class="start-tagline">An interactive gallery of what I've built, won, and shipped.</p>
+
+      <div class="start-links">
+        <a href="https://www.linkedin.com/in/samheyyeh" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/samheyyeh" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <button id="enter-btn">Enter Gallery</button>
+
+      <div class="start-instructions" id="desktop-instructions">
+        <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to walk</span>
+        <span>mouse to look around</span>
+        <span><kbd>Space</kbd> to jump</span>
+        <span><kbd>E</kbd> or click to view a piece</span>
+      </div>
+      <div class="start-instructions hidden" id="touch-instructions">
+        <span>left thumb to walk</span>
+        <span>drag right side to look around</span>
+        <span>tap JUMP to hop</span>
+        <span>tap "view" to inspect a piece</span>
+      </div>
     </div>
-  </header>
-  
-  <main>
-    <section class="gallery">
-      <div class="gallery-item" data-details="aiPromptBattle">
-        <video src="images/promptBattle.mp4" type="video/mp4" controls>
-          Your browser does not support videos.
-        </video>
-        <div class="overlay">
-          <p>AI Prompt Battle</p>
-        </div>
-      </div>
+  </div>
 
-      <div class="gallery-item" data-details="tedTalk">
-        <video src="images/TEDxTalk.mp4" type="video/mp4" controls>
-          Your browser does not support videos
-        </video>
-        <div class="overlay">
-          <p>TEDxArlington Heights Talk</p>
-        </div>
-      </div>
+  <!-- HUD (visible once inside the gallery) -->
+  <div id="hud" class="hidden">
+    <div id="crosshair"></div>
+    <div id="interact-prompt" class="hidden">
+      <span id="interact-title"></span>
+      <span class="interact-hint" id="interact-hint-desktop">click / E to view</span>
+      <button id="interact-btn" class="hidden">View</button>
+    </div>
 
-      <div class="gallery-item" data-details="captainInterview">
-        <img src="images/captainCover.png" alt="Captain Appearance" class="audio-cover">
-        <div class="overlay">
-          <p>Coffee With Captain Appearance</p>
-        </div>
+    <div id="hud-top">
+      <div class="hud-name">SAM YEH</div>
+      <div class="hud-links">
+        <a href="https://www.linkedin.com/in/samheyyeh" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/samheyyeh" target="_blank" rel="noopener">GitHub</a>
       </div>
-      
-      <div class="gallery-item" data-details="brc">
-        <img src="images/BRC.png" alt="Bored Racket Club">
-        <div class="overlay">
-          <p>Bored Racket Club</p>
-        </div>
+    </div>
+
+    <div id="resume-toast" class="hidden">Click anywhere to keep exploring</div>
+  </div>
+
+  <!-- Touch controls -->
+  <div id="touch-controls" class="hidden">
+    <div id="touch-move-zone">
+      <div id="touch-stick-base">
+        <div id="touch-stick"></div>
       </div>
+    </div>
+    <div id="touch-look-zone"></div>
+    <button id="jump-btn" class="hidden">JUMP</button>
+  </div>
 
-      <div class="gallery-item" data-details="hermanShout">
-        <img src="images/hermanShout.png" alt="Herman Shout">
-        <div class="overlay">
-          <p>imnotArt Internship</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-details="visionPro">
-        <img src="images/imnotart.png" alt="Vision Pro">
-        <div class="overlay">
-          <p>imnotArt Internship</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-details="ethChi">
-        <img src="images/EthChi.png" alt="ETH Chi">
-        <div class="overlay">
-          <p>ETH Chicago 2023</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-details="nakamoto">
-        <img src="images/nakamoto.png" alt="nakamoto">
-        <div class="overlay">
-          <p>Nakamoto Internship</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-details="tennis">
-        <img src="images/tennis.png" alt="tennis">
-        <div class="overlay">
-          <p>Tennis Player</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-details="marvila">
-        <img src="images/BRCmarket.jpeg" alt="marvila">
-        <div class="overlay">
-          <p>Bored Racket Club @ MBA Bodega</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-details="lisbonEvent">
-        <img src="images/BRCcommunity.jpg" alt="lisbonEvent">
-        <div class="overlay">
-          <p>Bored Racket Club Lisbon Event</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-details="metaCollective">
-        <img src="images/metacollective.JPEG" alt="metaCollective">
-        <div class="overlay">
-          <p>Meta Collective</p>
-        </div>
-      </div>
-
-    </section>
-  </main>
-
-  <div id="modal" class="modal">
+  <!-- Exhibit detail modal -->
+  <div id="modal" class="modal hidden">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
+      <span class="close-btn" id="close-btn">&times;</span>
       <div id="modal-details"></div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
