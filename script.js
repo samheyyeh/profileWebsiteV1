@@ -230,6 +230,18 @@ let verticalVelocity = 0;
 let isJumping = false;
 const textureLoader = new THREE.TextureLoader();
 
+const TIME_KEYFRAMES = [
+  { hour: 0, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.5, 1.15], windowChance: 0.55 },
+  { hour: 5, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.08, 0.95], windowChance: 0.55 },
+  { hour: 6.5, colors: ['#16203f', '#3a3355', '#a85f6a', '#f2985f'], moonAlpha: 0.15, starAlpha: 0.2, sunAlpha: 0.7, sunPos: [0.15, 0.68], windowChance: 0.35 },
+  { hour: 8, colors: ['#3c7bd6', '#6fa8e0', '#a9d4ef', '#dff0fa'], moonAlpha: 0, starAlpha: 0, sunAlpha: 0.9, sunPos: [0.28, 0.45], windowChance: 0.12 },
+  { hour: 12, colors: ['#2e7bd8', '#5fa3e6', '#a7d3f3', '#eaf6ff'], moonAlpha: 0, starAlpha: 0, sunAlpha: 1, sunPos: [0.5, 0.16], windowChance: 0.08 },
+  { hour: 17, colors: ['#3f5f9e', '#7d6f9a', '#c98a76', '#f2b177'], moonAlpha: 0, starAlpha: 0, sunAlpha: 0.85, sunPos: [0.72, 0.42], windowChance: 0.18 },
+  { hour: 19, colors: ['#0c1130', '#241c46', '#5c3860', '#d98a5c'], moonAlpha: 0.4, starAlpha: 0.4, sunAlpha: 0.3, sunPos: [0.85, 0.66], windowChance: 0.45 },
+  { hour: 21, colors: ['#060810', '#0e1128', '#171a34', '#241f38'], moonAlpha: 0.85, starAlpha: 0.85, sunAlpha: 0, sunPos: [0.92, 0.98], windowChance: 0.5 },
+  { hour: 24, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.5, 1.15], windowChance: 0.55 },
+];
+
 /* ==========================================================
    Boot
    ========================================================== */
@@ -502,18 +514,6 @@ function lerpColor(hexA, hexB, t) {
   const bl = Math.round(lerp(a[2], b[2], t));
   return `rgb(${r}, ${g}, ${bl})`;
 }
-
-const TIME_KEYFRAMES = [
-  { hour: 0, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.5, 1.15], windowChance: 0.55 },
-  { hour: 5, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.08, 0.95], windowChance: 0.55 },
-  { hour: 6.5, colors: ['#16203f', '#3a3355', '#a85f6a', '#f2985f'], moonAlpha: 0.15, starAlpha: 0.2, sunAlpha: 0.7, sunPos: [0.15, 0.68], windowChance: 0.35 },
-  { hour: 8, colors: ['#3c7bd6', '#6fa8e0', '#a9d4ef', '#dff0fa'], moonAlpha: 0, starAlpha: 0, sunAlpha: 0.9, sunPos: [0.28, 0.45], windowChance: 0.12 },
-  { hour: 12, colors: ['#2e7bd8', '#5fa3e6', '#a7d3f3', '#eaf6ff'], moonAlpha: 0, starAlpha: 0, sunAlpha: 1, sunPos: [0.5, 0.16], windowChance: 0.08 },
-  { hour: 17, colors: ['#3f5f9e', '#7d6f9a', '#c98a76', '#f2b177'], moonAlpha: 0, starAlpha: 0, sunAlpha: 0.85, sunPos: [0.72, 0.42], windowChance: 0.18 },
-  { hour: 19, colors: ['#0c1130', '#241c46', '#5c3860', '#d98a5c'], moonAlpha: 0.4, starAlpha: 0.4, sunAlpha: 0.3, sunPos: [0.85, 0.66], windowChance: 0.45 },
-  { hour: 21, colors: ['#060810', '#0e1128', '#171a34', '#241f38'], moonAlpha: 0.85, starAlpha: 0.85, sunAlpha: 0, sunPos: [0.92, 0.98], windowChance: 0.5 },
-  { hour: 24, colors: ['#05060f', '#0b0e24', '#12132c', '#1b1c30'], moonAlpha: 1, starAlpha: 1, sunAlpha: 0, sunPos: [0.5, 1.15], windowChance: 0.55 },
-];
 
 function getTimePalette(hourFloat) {
   const h = ((hourFloat % 24) + 24) % 24;
